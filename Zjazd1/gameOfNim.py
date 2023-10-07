@@ -20,7 +20,6 @@ class GameOfNim(TwoPlayerGame):
         move_details = move.split(",")
         if self.pile[int(move_details[0]) - 1] > 0:
             self.pile[int(move_details[0]) - 1] -= (int(move_details[1]))  # remove bones.
-        # print('dupa')
 
     def win(self):
         if self.pile.count(0) == 2 and self.pile[np.nonzero(self.pile)[0][0]] < 4:
