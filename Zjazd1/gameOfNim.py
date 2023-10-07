@@ -14,7 +14,12 @@ class GameOfNim(TwoPlayerGame):
         self.current_player = 1  # player 1 starts
 
     def possible_moves(self):
-        return ["1,1", "1,2", "1,3", "2,1", "2,2", "2,3", "3,1", "3,2", "3,3"]
+        moves = []
+        for i in range(3):
+            for j in range(1, 4):
+                if self.pile[i] >= j:
+                    moves.append("{},{}".format(i + 1, j))
+        return moves
 
     def make_move(self, move):
         move_details = move.split(",")
