@@ -14,13 +14,14 @@ from easyAI import TwoPlayerGame, Negamax, Human_Player, AI_Player
 
 class GameOfNim(TwoPlayerGame):
     """There is at least a few variations of game of Nim, this is a ruleset which we decided to code.
-    Game of Nim is a game similar to game of bones. You have 3 heaps with tokens.
-    Every round one player can take up to 3 tokens from only one heap, then his turn ends.
-    The winner will be a player which will take the last token or tokens"""
+    You have 3 heaps with tokens. Every round one player can take up to 3 tokens from only one heap, then his turn ends.
+    The winner will be a player which will take the last token or tokens
+    Player choose move in form of num,num, where first num is heap from which want to take tokens,
+    second num is amount of tokens which you want to take."""
 
     def __init__(self, players=None):
         self.players = players
-        self.pile = [7, 8, 9]  # start with 3 heaps of tokens, first one has 7 tokens, second has 8, third has 9
+        self.heap = [7, 8, 9]  # start with 3 heaps of tokens, first one has 7 tokens, second has 8, third has 9
         self.current_player = 1  # player 1 starts
 
     def possible_moves(self):
@@ -32,7 +33,7 @@ class GameOfNim(TwoPlayerGame):
         moves = []
         for i in range(3):
             for j in range(1, 4):
-                if self.pile[i] >= j:  # checking if pile big enough for specific move
+                if self.heap[i] >= j:  # checking if pile big enough for specific move
                     moves.append("{},{}".format(i + 1, j))
         return moves
 
@@ -43,8 +44,8 @@ class GameOfNim(TwoPlayerGame):
         move (str): specific move chosen by player to be done
         """
         move_details = move.split(",")  # split moves by coma
-        if self.pile[int(move_details[0]) - 1] > 0:  # check if there are still tokens on a heap
-            self.pile[int(move_details[0]) - 1] -= (int(move_details[1]))  # remove tokens from heap
+        if self.heap[int(move_details[0]) - 1] > 0:  # check if there are still tokens on a heap
+            self.heap[int(move_details[0]) - 1] -= (int(move_details[1]))  # remove tokens from heap
 
     def win(self):
         """Function that define rules of the winning of the game
@@ -52,7 +53,7 @@ class GameOfNim(TwoPlayerGame):
         Returns:
         bool: returns true if winning requirements are met
         """
-        if self.pile.count(0) == 3:  # game ends when last player will take last token
+        if self.heap.count(0) == 3:  # game ends when last player will take last token
             return True
 
     def is_over(self):
@@ -74,8 +75,7 @@ class GameOfNim(TwoPlayerGame):
     def show(self):
         """Function to print amount of tokens on specific heaps"""
         print('First heap contains {} tokens \nSecond heap contains {} tokens \nThird heap contains {} tokens'
-              .format(self.pile[0], self.pile[1], self.pile[2]))
-
+              .format(self.heap[0], self.heap[1], self.heap[2]))
 
 
 happy = """     YOU ARE THE WINNER !!!
@@ -99,19 +99,19 @@ def winner_message(game):
 
     Parameters:
     game (obj): whole object of GameOfNim class
+
     Returns:
     String: string with communication about winner
     """
     if game.win():
         if game.current_player == 2:
-            return ("\n" + happy)
+            return "\n" + happy
         else:
-            return "\n COMPUTER IS THE WINNER!"
+            return "\nCOMPUTER IS THE WINNER!"
 
 
 ai = Negamax(10)  # The AI will think 10 moves in advance
-game = GameOfNim([ Human_Player(),AI_Player(ai)])  # run a game with human player and AI player
+game = GameOfNim([Human_Player(), AI_Player(ai)])  # run a game with human player and AI player
 history = game.play()
 
 print(winner_message(game))
-
