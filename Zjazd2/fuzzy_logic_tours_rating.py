@@ -4,7 +4,7 @@ Fuzzy Control Systems: Trip Grading
 ==========================================
 Authors: Magdalena Asmus-Mrzygłód, Patryk Klimek
 
-In order to be able to run script with this game you will need:
+In order to be able to run script you will need:
 Python at least 3.8
 NumPy at least 1.23.4
 Matplotlib at least 3.6.2
@@ -19,9 +19,9 @@ pip install matplotlib
 Trips grading problem.
 ==========================================
 
-We created a fuzzy logic system to grade trips with guides on percentage levels.
+We created a fuzzy logic system to grade trips with guides.
 When grading the trip, you consider the guide skills and professionalism, route attractiveness, price of the trip and
-logistics of the trip. All of them rated between 1 and 5(classic full stars model known from websites). We assume
+logistics of the trip. All of them rated between 1 and 5  (classic full stars model known from websites). We assume
 the idea that not all of these elements of grades has this same weight, so we are proposing fuzzy logic system to
 estimate overall grade for a trip. Trip will be graded between 0% and 100% satisfaction.
 
@@ -32,24 +32,36 @@ We would formulate this problem as:
       * Universe: How good was the guide, on a scale of 1 to 5?
       * Fuzzy set: poor, mediocre, average, decent, good
    - `route attractiveness`
-      * Universe: How tasty was the food, on a scale of 0 to 10?
+      * Universe: How attractive was the route and attractions, on a scale of 1 to 5?
+      * Fuzzy set: poor, mediocre, average, decent, good
+   - `price_quality`
+      * Universe: How good was the prize?, on a scale of 1 to 5?
+      * Fuzzy set: poor, mediocre, average, decent, good
+   - `logistics_aspects`
+      * Universe: Was the trip well organized?, on a scale of 1 to 5?
       * Fuzzy set: poor, mediocre, average, decent, good
 * Consequents (Outputs)
-   - `tip`
-      * Universe: How much should we tip, on a scale of 0% to 25%
-      * Fuzzy set: low, medium, high
+   - `trip_grade`
+      * Universe: How good was this offer overally, on scale from 0% to 100%?
+      * Fuzzy set: very low, low, medium, high, very high
 * Rules
-   - IF the *service* was good  *or* the *food quality* was good,
-     THEN the tip will be high.
-   - IF the *service* was average, THEN the tip will be medium.
-   - IF the *service* was poor *and* the *food quality* was poor
-     THEN the tip will be low.
-* Usage
-   - If I tell this controller that I rated:
-      * the service as 9.8, and
-      * the quality as 6.5,
-   - it would recommend I leave:
-      * a 20.2% tip.
+   - IF the guide_professionalism was poor and route_attractiveness was poor and price_quality was poor and
+     logistics_aspects was poor THEN the trip grade will be very low
+   - IF the guide_professionalism was mediocre and route_attractiveness was mediocre and price_quality was mediocre and
+     logistics_aspects was mediocre THEN the trip grade will be low
+   - IF the guide_professionalism was average and route_attractiveness was average and price_quality was average and
+     logistics_aspects was average THEN the trip grade will be medium
+   - IF the guide_professionalism was decent and route_attractiveness was decent and price_quality was decent and
+     logistics_aspects was decent THEN the trip grade will be height
+   - IF the guide_professionalism was good and route_attractiveness was good and price_quality was good and
+     logistics_aspects was good THEN the trip grade will be very high
+   - IF the guide_professionalism was average and route_attractiveness was average and price_quality was poor and
+     logistics_aspects was poor THEN the trip grade will be low
+   - IF the guide_professionalism was good and route_attractiveness was good and price_quality was mediocre and
+     logistics_aspects was mediocre  THEN the trip grade will be high
+   - IF the guide_professionalism was poor and route_attractiveness was poor and price_quality was good and
+     logistics_aspects was good THEN the trip grade will be low
+
 
 """
 import matplotlib.pyplot as plt
@@ -60,7 +72,7 @@ from skfuzzy import control as ctrl
 
 """
 Antecedent of guide professionalism, route attractiveness, price and logistics, all between 1 and 5
-Consequent of trip grade between 0 and 100%
+Consequent of trip grade between 0% and 100%
 """
 guide_professionalism = ctrl.Antecedent(np.arange(1, 6, 1), 'guide_professionalism')
 route_attractiveness = ctrl.Antecedent(np.arange(1, 6, 1), 'route_attractiveness')
@@ -90,12 +102,7 @@ Fuzzy rules
 -----------
 
 Now, to make these triangles useful, we define the *fuzzy relationship*
-between input and output variables. For the purposes of our example, consider
-three simple rules:
-
-1. If the food is poor OR the service is poor, then the tip will be low
-2. If the service is average, then the tip will be medium
-3. If the food is good OR the service is good, then the tip will be high.
+between input and output variables.  W decided to define 8 rules
 
 Most people would agree on these rules, but the rules are fuzzy. Mapping the
 imprecise rules into a defined, actionable tip is a challenge. This is the
