@@ -5,7 +5,6 @@ Function used to generate JSON file with movies preferences data form Excel file
 import json
 
 import pandas as pd
-# pip install openpyxl
 
 
 def create_data_json():
@@ -18,7 +17,7 @@ def create_data_json():
     # iterate through columns
     for col_num in range(len(movie_data.columns)):
         movies_score = {}
-        #iterate through movie rows
+        # iterate through movie rows
         for num in range(0, len(movie_data.iloc[:, col_num]), 2):
             # create movies:score dictionary
             if str(movie_data.iloc[num, col_num]) != 'nan':
@@ -32,6 +31,7 @@ def create_data_json():
     # save json object to file
     with open('movies_data.json', 'w+', encoding='utf-8') as file:
         file.write(movies_json)
+
 
 # execute function
 create_data_json()
