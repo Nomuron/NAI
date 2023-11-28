@@ -1,3 +1,37 @@
+"""
+Authors: Magdalena Asmus-Mrzygłód, Patryk Klimek
+
+In order to be able to run script with this game you will need:
+Python at least 3.8
+numpy package
+pandas package
+pyplot from matplotlib
+and some functions of sklearn-learn:
+classification_report from sklearn.metrics
+train_test_split from sklearn.model_selection
+DecisionTreeClassifier from sklearn.tree
+
+Pycharm or other IDE for Python
+Link to install python: https://www.python.org/downloads/
+To run script you need to run it from IDE .
+
+==========================================
+Decision tree
+==========================================
+
+Decision trees are a popular supervised learning technique used in machine learning
+for both classification and regression tasks.
+They organize data into a tree-like structure where each internal node represents a feature,
+each branch denotes a decision based on that feature, and each leaf node holds a final outcome or prediction.
+These trees make decisions by recursively splitting the dataset along the features,
+selecting the most informative features at each step to maximize the homogeneity of the resulting subsets.
+
+In provided example we are analyzing data about risc of heart diseases .
+Risk is divided into 2 classes (small risc, high risk).
+We are using 75% of data for training and 25% of data for testing.
+We have used max depth of tree for 8
+After learning algorythm and checking on testing data we are receiving information about algorythm precision.
+"""
 import numpy as np
 import pandas as pd
 from matplotlib import pyplot as plt

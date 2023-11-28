@@ -1,3 +1,37 @@
+"""
+Authors: Magdalena Asmus-Mrzygłód, Patryk Klimek
+
+In order to be able to run script with this game you will need:
+Python at least 3.8
+numpy package
+pandas package
+pyplot from matplotlib
+and some functions of sklearn-learn:
+classification_report from sklearn.metrics
+train_test_split from sklearn.model_selection
+svm from sklearn
+
+Pycharm or other IDE for Python
+Link to install python: https://www.python.org/downloads/
+To run script you need to run it from IDE .
+
+==========================================
+Support Vector Machines
+==========================================
+
+Support Vector Machines (SVMs) are a supervised machine learning algorithm used for classification.
+They work by finding the optimal decision boundary or hyperplane that separates data points into different classes
+while maximizing the margin between them.
+SVMs are effective in handling both linear and non-linear data by using various kernel functions
+to transform data into higher-dimensional spaces,
+where complex patterns can be more easily separated.
+
+In provided example we are analyzing data about risc of heart diseases .
+Risk is divided into 2 classes (small risc, high risk).
+We are using 75% of data for training and 25% of data for testing.
+We have used linear kernel for SVM algorythm.
+After learning algorythm and checking on testing data we are receiving information about algorythm precision.
+"""
 import numpy as np
 import pandas as pd
 from matplotlib import pyplot as plt
