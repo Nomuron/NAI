@@ -9,37 +9,37 @@ pyplot from matplotlib
 and some functions of sklearn-learn:
 classification_report from sklearn.metrics
 train_test_split from sklearn.model_selection
-svm from sklearn
+DecisionTreeClassifier from sklearn.tree
 
 Pycharm or other IDE for Python
 Link to install python: https://www.python.org/downloads/
-To run script you need to run it from IDE .
+To run script you need to run command "python wheat_decision_tree.py"
 
 ==========================================
-Support Vector Machines
+Decision tree
 ==========================================
 
-Support Vector Machines (SVMs) are a supervised machine learning algorithm used for classification.
-They work by finding the optimal decision boundary or hyperplane that separates data points into different classes
-while maximizing the margin between them.
-SVMs are effective in handling both linear and non-linear data by using various kernel functions
-to transform data into higher-dimensional spaces,
-where complex patterns can be more easily separated.
+Decision trees are a popular supervised learning technique used in machine learning
+for both classification and regression tasks.
+They organize data into a tree-like structure where each internal node represents a feature,
+each branch denotes a decision based on that feature, and each leaf node holds a final outcome or prediction.
+These trees make decisions by recursively splitting the dataset along the features,
+selecting the most informative features at each step to maximize the homogeneity of the resulting subsets.
 
 In provided example we are analyzing data about seeds. Those seeds are divided into 3 classes.
 We are using 75% of data for training and 25% of data for testing.
-We have used linear kernel for SVM algorythm.
+We have used max depth of tree for 8
 After learning algorythm and checking on testing data we are receiving information about algorythm precision.
 """
 import numpy as np
 import matplotlib.pyplot as plt
 from sklearn.metrics import classification_report
 from sklearn.model_selection import train_test_split
-from sklearn import svm
+from sklearn.tree import DecisionTreeClassifier
 
 
 # Load input data
-input_file = 'seeds_dataset.txt'
+input_file = 'data/seeds_dataset.txt'
 data = np.loadtxt(input_file, delimiter='\t')
 X, y = data[:, :-1], data[:, -1]
 
@@ -64,25 +64,25 @@ plt.title('Input data')
 X_train, X_test, y_train, y_test = train_test_split(
         X, y, test_size=0.25, random_state=5)
 
-# Support Vector classifier
-params = {'kernel': 'linear'}
-support_vector_machine = svm.SVC(**params)
+# Decision Tree classifier
+params = {'random_state': 0, 'max_depth': 8}
+classifier = DecisionTreeClassifier(**params)
 
 # Teaching the model
-support_vector_machine.fit(X_train, y_train)
+classifier.fit(X_train, y_train)
 
 # Calculating predict values for test dataset
-y_test_pred = support_vector_machine.predict(X_test)
+y_test_pred = classifier.predict(X_test)
 
 # Evaluate classifier performance
 class_names = ['Class-1', 'Class-2', 'Class-3']
 print("\n" + "#"*40)
-print("\nClassifier performance of wheat seeds support vector classifier model on training dataset\n")
-print(classification_report(y_train, support_vector_machine.predict(X_train), target_names=class_names))
+print("\nClassifier performance of wheat seeds decision tree model on training dataset\n")
+print(classification_report(y_train, classifier.predict(X_train), target_names=class_names))
 print("#"*40 + "\n")
 
 print("#"*40)
-print("\nClassifier performance of wheat seeds support vector classifier model on test dataset\n")
+print("\nClassifier performance of wheat seeds decision tree model on test dataset\n")
 print(classification_report(y_test, y_test_pred, target_names=class_names))
 print("#"*40 + "\n")
 

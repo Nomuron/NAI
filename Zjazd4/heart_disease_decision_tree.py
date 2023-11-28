@@ -13,7 +13,7 @@ DecisionTreeClassifier from sklearn.tree
 
 Pycharm or other IDE for Python
 Link to install python: https://www.python.org/downloads/
-To run script you need to run it from IDE .
+To run script you need to run command "python heart_disease_decision_tree.py"
 
 ==========================================
 Decision tree
@@ -40,7 +40,7 @@ from sklearn.model_selection import train_test_split
 from sklearn.tree import DecisionTreeClassifier
 
 # Load input data
-data = pd.read_csv('heart.csv')
+data = pd.read_csv('data/heart.csv')
 X, y = data.iloc[:, 0:-1], data.iloc[:, -1]
 
 # Separate input data into two classes based on labels
