@@ -1,3 +1,33 @@
+"""
+Authors: Magdalena Asmus-Mrzygłód, Patryk Klimek
+
+In order to be able to run script with this game you will need:
+Python at least 3.8
+numpy package
+TensorFlow with some packages which should be imported in the code:
+-cifar10 dataset
+-Sequential model
+-Conv2D, MaxPooling2D, Flatten, Dense, Dropout layers
+-to_categorical utils
+
+Pycharm or other IDE for Python
+Link to install python: https://www.python.org/downloads/
+To run script you need to run command "python animals_nn.py"
+
+==========================================
+Neural Networks
+==========================================
+
+Neural networks are computing systems inspired by the human brain's structure and function.
+They consist of interconnected nodes called neurons organized in layers.
+Each neuron processes input data and transmits signals to neurons in the next layer.
+Neural networks learn by adjusting connections between neurons based on example data.
+
+In provided example we are analyzing photos of animals and some vehicles.
+In this implementation we created 2 architectures of neural network .
+First one is less complex. Second one is more complex.
+After some tests we can say that second model gives better results. Both overall results(%) and specific predictions.
+"""
 import numpy as np
 from tensorflow.keras.datasets import cifar10
 from tensorflow.keras.models import Sequential

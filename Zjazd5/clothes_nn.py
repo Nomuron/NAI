@@ -1,3 +1,35 @@
+"""
+Authors: Magdalena Asmus-Mrzygłód, Patryk Klimek
+
+In order to be able to run script with this game you will need:
+Python at least 3.8
+seaborn package
+numpy package
+pyplot from matplotlib
+TensorFlow with some packages which should be imported in the code:
+- fashion_mnist dataset
+- Sequential model
+- Conv2D, MaxPooling2D, Flatten, Dense, Dropout layers
+- confusion_matrix
+
+Pycharm or other IDE for Python
+Link to install python: https://www.python.org/downloads/
+To run script you need to run command "python clothes_nn.py"
+
+==========================================
+Neural Networks
+==========================================
+
+Neural networks are computing systems inspired by the human brain's structure and function.
+They consist of interconnected nodes called neurons organized in layers.
+Each neuron processes input data and transmits signals to neurons in the next layer.
+Neural networks learn by adjusting connections between neurons based on example data.
+
+In provided example we are analyzing photos of clothes.
+This code demonstrates the entire pipeline of training a neural network, evaluating its performance,
+visualizing the confusion matrix, and making predictions for specific records in the Fashion-MNIST dataset.
+
+"""
 import numpy as np
 import seaborn as sns
 from matplotlib import pyplot as plt

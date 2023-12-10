@@ -1,3 +1,32 @@
+"""
+Authors: Magdalena Asmus-Mrzygłód, Patryk Klimek
+
+In order to be able to run script with this game you will need:
+Python at least 3.8
+numpy package
+TensorFlow with some packages which should be imported in the code:
+- Sequential model
+- Conv2D, MaxPooling2D, Flatten, Dense, Dropout, Rescaling
+
+
+Pycharm or other IDE for Python
+Link to install python: https://www.python.org/downloads/
+To run script you need to run command "python flowers_nn.py"
+
+==========================================
+Neural Networks
+==========================================
+
+Neural networks are computing systems inspired by the human brain's structure and function.
+They consist of interconnected nodes called neurons organized in layers.
+Each neuron processes input data and transmits signals to neurons in the next layer.
+Neural networks learn by adjusting connections between neurons based on example data.
+
+In provided example we are analyzing photos of flowers.
+This code demonstrates how to prepare an image dataset, build a CNN model for classification,
+train the model, evaluate its performance, and make predictions on specific images within the dataset.
+
+"""
 import numpy as np
 import tensorflow as tf
 from tensorflow.keras.models import Sequential
