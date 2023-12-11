@@ -28,7 +28,6 @@ Neural networks learn by adjusting connections between neurons based on example 
 In provided example we are analyzing photos of clothes.
 This code demonstrates the entire pipeline of training a neural network, evaluating its performance,
 visualizing the confusion matrix, and making predictions for specific records in the Fashion-MNIST dataset.
-
 """
 import numpy as np
 import seaborn as sns

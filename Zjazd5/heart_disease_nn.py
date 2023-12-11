@@ -27,8 +27,6 @@ Neural networks learn by adjusting connections between neurons based on example 
 This code builds a simple neural network model to predict the presence of heart disease based on various input features
 and evaluates its performance on a held-out test set,
 also demonstrating how to make predictions for a specific record in the dataset.
-
-
 """
 import numpy as np
 import pandas as pd

@@ -25,7 +25,6 @@ Neural networks learn by adjusting connections between neurons based on example 
 In provided example we are analyzing photos of flowers.
 This code demonstrates how to prepare an image dataset, build a CNN model for classification,
 train the model, evaluate its performance, and make predictions on specific images within the dataset.
-
 """
 import numpy as np
 import tensorflow as tf
